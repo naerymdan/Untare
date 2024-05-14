@@ -47,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       box.put('user', loggedInUser);
       box.put('users', response);
 
-      authenticationBloc.add(UserLoggedIn(token: userToken.token, url: url));
+      authenticationBloc.add(UserLoggedIn(token: box.get('token'), url: url));
       emit(LoginSuccess());
     } on ApiException catch(e) {
       if (e.statusCode == 400) {
